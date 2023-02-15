@@ -1,0 +1,35 @@
+.personagem-conteiner {
+  padding: 3rem;
+  background: red;
+}
+
+//search container//
+.search-container {
+  margin-bottom: 20px;
+  position: relative;
+  width: 400px;
+  background: red;
+}
+
+.search-container input[type="text"] {
+  padding: 10px;
+  margin-right: 10px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-container input[type="text"]:focus {
+  outline: none;
+}
+
+.search-container i {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #aaa;
+}
+
+//grid//
