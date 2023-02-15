@@ -1,0 +1,23 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  height: 60px;
+  padding: 0 20px;
+}
+
+.logo-container img {
+  height: 40px;
+  width: auto;
+}
+
+.name-container {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #555555;
+  opacity: 1;
+  font-size: 14px;
+  font-family: 'PTSansCaption', sans-serif;
+}
