@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MarvelResponse } from '../interfaces/marvel-response';
-import { Character } from '../interfaces/Character';
+import { Character } from '../interfaces/character';
+
 
 
 @Injectable({
