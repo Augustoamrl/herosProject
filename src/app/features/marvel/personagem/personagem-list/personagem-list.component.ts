@@ -46,21 +46,26 @@ export class PersonagemListComponent implements OnInit {
       });
   }
 
+  get paginas(): number[] {
+    const paginasTotais = Math.ceil(this.personagens.length / this.itensPorPagina);
+    const paginasVisiveis = 5;
+    const paginasAntesDepois = Math.floor(paginasVisiveis / 2);
 
-  get numPaginas(): number {
-    return Math.ceil(this.personagemFiltrado.length / this.itensPorPagina);
+    let inicio = Math.max(this.paginaAtual - paginasAntesDepois, 1);
+    let fim = Math.min(inicio + paginasVisiveis - 1, paginasTotais);
+
+    if (fim - inicio < paginasVisiveis - 1) {
+      inicio = Math.max(fim - paginasVisiveis + 1, 1);
+    }
+
+    return Array(fim - inicio + 1).fill(0).map((_, idx) => inicio + idx);
   }
 
-  get personagemFiltrado(): Personagem[] {
-    return this.personagens.filter(personagem => personagem.name.toLowerCase().includes(this.nomeBusca.toLowerCase()));
-  }
+  irParaPagina(pagina: number) {
+    if (pagina < 1 || pagina > this.paginas[this.paginas.length - 1]) {
+      return;
+    }
 
-  paginaAnterior() {
-    this.paginaAtual--;
+    this.paginaAtual = pagina;
   }
-
-  proximaPagina() {
-    this.paginaAtual++;
-  }
-
 }
