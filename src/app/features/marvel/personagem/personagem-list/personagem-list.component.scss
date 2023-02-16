@@ -1,21 +1,21 @@
 .personagem-conteiner {
   padding: 3rem;
 
-  .container-img-character {
+  .container-img-personagem {
     display: grid;
     grid-template-columns: 0.5fr 1.5fr;
     grid-template-rows: 1fr;
     gap: 10px 20px;
     grid-template-areas: "area1 area2";
   }
-  .column-img-character {
+  .column-img-personagem {
     grid-area: area1;
   }
-  .column-name-character {
+  .column-name-personagem {
     grid-area: area2;
   }
 
-  .img-character {
+  .img-personagem {
     background: transparent 0% 0% no-repeat padding-box;
     border-radius: 4px;
     opacity: 1;
@@ -27,7 +27,7 @@
   .search-container {
     margin-bottom: 20px;
     position: relative;
-    width: 400px;
+    width: 350px;
   }
 
   .search-container input[type="text"] {
@@ -36,6 +36,7 @@
     width: 100%;
     border: none;
     border-bottom: 1px solid #ddd;
+    border-radius: 6px;
   }
 
   .search-container input[type="text"]:focus {
@@ -44,33 +45,53 @@
 
   .search-container i {
     position: absolute;
-    top: 50%;
+    top: 72%;
     right: 0;
     transform: translateY(-50%);
     font-size: 20px;
     color: #aaa;
   }
 
-  //table//
+  //tabela//
+
+  .table-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+  }
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    border-radius: 10px;
   }
 
   th,
   td {
     padding: 12px;
     text-align: left;
-    border: 1px solid #ddd;
+    border: none;
   }
 
   th {
     background-color: #f2f2f2;
   }
 
+  tr,
+  td {
+    background-color: #fff;
+    padding: 20px;
+    cursor: pointer;
+  }
+
   tr:hover {
-    background-color: #f5f5f5;
+    td {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .d-sm-table-cell {
+    @media (max-width: 576px) {
+      display: none !important;
+    }
   }
 
   //paginacao//

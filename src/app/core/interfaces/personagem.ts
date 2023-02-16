@@ -2,7 +2,7 @@ import { EventList } from "./event-list";
 import { SeriesList } from "./series-list";
 import { Thumbnail } from "./thumbnail";
 
-export interface Character {
+export interface Personagem {
     id: number;
     name: string;
     description: string;

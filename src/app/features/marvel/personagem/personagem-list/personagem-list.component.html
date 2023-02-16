@@ -1,47 +1,53 @@
 <div class="personagem-conteiner">
-    <p>personagem-list works!</p>
     <h1>Busca de personagens</h1>
 
     <div class="search-container">
+        <h3>
+            <p>Nome do personagem</p>
+        </h3>
         <input type="text" [(ngModel)]="nomeBusca" placeholder="Buscar por nome">
         <i style="color: black">search</i>
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Personagens</th>
-                <th>Séries</th>
-                <th>Eventos</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let character of characterList ">
-                <td class="container-img-character">
-                    <div class="column-img-character">
-                        <img class="img-character"
-                            [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
-                            alt="Imagem do personagem">
-                    </div>
-                    <div class="column-name-character">
-                        {{ character.name }}
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Personagens</th>
+                    <th class="d-sm-table-cell">Séries</th>
+                    <th class="d-sm-table-cell">Eventos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let personagem of personagens | filtroPorNome: nomeBusca | paginacao: paginaAtual: itensPorPagina">
+                    <td class="container-img-personagem">
+                        <div class="column-img-personagem">
+                            <img class="img-personagem"
+                                [src]="personagem.thumbnail.path + '.' + personagem.thumbnail.extension"
+                                alt="Imagem do personagem">
+                        </div>
+                        <div class="column-name-personagem">
+                            {{ personagem.name }}
 
-                    </div>
-                </td>
-                <td>
-                    <span *ngIf="character.series.items.length > 0">{{ character.series.items[0].name }}</span>
-                    <br>
-                    <span *ngIf="character.series.items.length > 1">{{ character.series.items[1].name }}</span>
-                    <br>
-                    <span *ngIf="character.series.items.length > 2">{{ character.series.items[2].name }}</span>
-                </td>
-                <td>
-                    <span *ngIf="character.events.items.length > 0">{{ character.events.items[0].name}}</span>
-                    <span *ngIf="character.events.items.length > 1">{{character.events.items[1].name}}</span>
-                    <span *ngIf="character.events.items.length > 2">{{character.events.items[2].name}}</span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        </div>
+                    </td>
+                    <td class="d-sm-table-cell">
+                        <span *ngIf="personagem.series.items.length > 0">{{ personagem.series.items[0].name }}</span>
+                        <br>
+                        <span *ngIf="personagem.series.items.length > 1">{{ personagem.series.items[1].name }}</span>
+                        <br>
+                        <span *ngIf="personagem.series.items.length > 2">{{ personagem.series.items[2].name }}</span>
+                    </td>
+                    <td class="d-sm-table-cell">
+                        <span *ngIf="personagem.events.items.length > 0">{{ personagem.events.items[0].name}}</span>
+                        <span *ngIf="personagem.events.items.length > 1">{{personagem.events.items[1].name}}</span>
+                        <span *ngIf="personagem.events.items.length > 2">{{personagem.events.items[2].name}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 
     <div class="pagination-container">
         <button class="pagination-button" (click)="paginaAnterior()">Anterior</button>
