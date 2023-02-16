@@ -6,7 +6,47 @@
         <input type="text" [(ngModel)]="nomeBusca" placeholder="Buscar por nome">
         <i style="color: black">search</i>
     </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Personagens</th>
+                <th>Séries</th>
+                <th>Eventos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let character of characterList ">
+                <td class="container-img-character">
+                    <div class="column-img-character">
+                        <img class="img-character"
+                            [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
+                            alt="Imagem do personagem">
+                    </div>
+                    <div class="column-name-character">
+                        {{ character.name }}
 
+                    </div>
+                </td>
+                <td>
+                    <span *ngIf="character.series.items.length > 0">{{ character.series.items[0].name }}</span>
+                    <br>
+                    <span *ngIf="character.series.items.length > 1">{{ character.series.items[1].name }}</span>
+                    <br>
+                    <span *ngIf="character.series.items.length > 2">{{ character.series.items[2].name }}</span>
+                </td>
+                <td>
+                    <span *ngIf="character.events.items.length > 0">{{ character.events.items[0].name}}</span>
+                    <span *ngIf="character.events.items.length > 1">{{character.events.items[1].name}}</span>
+                    <span *ngIf="character.events.items.length > 2">{{character.events.items[2].name}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
+    <div class="pagination-container">
+        <button class="pagination-button" (click)="paginaAnterior()">Anterior</button>
+        <span>Página {{ paginaAtual }} de {{ numPaginas }}</span>
+        <button class="pagination-button" (click)="proximaPagina()">Próxima</button>
+    </div>
 
 </div>

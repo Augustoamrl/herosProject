@@ -1,5 +1,6 @@
 import { EventList } from "./event-list";
 import { SeriesList } from "./series-list";
+import { Thumbnail } from "./thumbnail";
 
 export interface Character {
     id: number;
@@ -7,6 +8,7 @@ export interface Character {
     description: string;
     modified: Date;
     resourceURI: string;
+    thumbnail: Thumbnail;
     events: EventList;
     series: SeriesList;
 }
