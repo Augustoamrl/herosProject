@@ -17,5 +17,8 @@
             </div>
         </div>
     </div>
-    <button *ngIf="seriesQueParticipou.length > 3" class="voltar-button" (click)="navegarParaPersonagemList()">Voltar</button>
+    <div class="voltar-button-footer">
+        <button *ngIf="seriesQueParticipou.length > 3" class="voltar-button"
+            (click)="navegarParaPersonagemList()">Voltar</button>
+    </div>
 </div>
