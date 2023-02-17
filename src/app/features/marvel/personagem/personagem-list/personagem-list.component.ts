@@ -13,6 +13,8 @@ export class PersonagemListComponent implements OnInit {
   nomeBusca: string = '';
   paginaAtual: number = 1;
   itensPorPagina: number = 5;
+  //no documento pdf pedia 10 linhas por pagina, no protitpo do adobexd so havia 4 linhas por pagina.
+  //acredito que seria algo a se conversar, por senso critico pessoal optei por usar 5 linhas por pagina, por questao de UI para nao gerar scroll vertical
 
   personagens: Personagem[] = [];
   constructor(
