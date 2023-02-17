@@ -1,0 +1,21 @@
+<div class="personagem-detalhes-conteiner effect-fadeIn">
+    <button class="voltar-button" (click)="navegarParaPersonagemList()">Voltar</button>
+    <h1>Midias em que o personagem participou:</h1>
+
+    <h3>Series:</h3>
+    <div class="card-grid">
+        <div class="card" *ngFor="let serie of seriesQueParticipou">
+            <div class="card-titulo">
+                <h2>{{serie.title}}</h2>
+            </div>
+            <div>
+                <img class="img-personagem" [src]="serie.thumbnail.path + '.' + serie.thumbnail.extension"
+                    alt="Imagem do personagem">
+            </div>
+            <div class="card-descricao">
+                <h2>{{serie.description || 'Sem descrição'}}</h2>
+            </div>
+        </div>
+    </div>
+    <button *ngIf="seriesQueParticipou.length > 3" class="voltar-button" (click)="navegarParaPersonagemList()">Voltar</button>
+</div>

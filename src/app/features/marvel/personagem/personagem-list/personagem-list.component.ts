@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, lastValueFrom, throwError } from 'rxjs';
 import { Personagem } from 'src/app/core/interfaces/personagem';
 import { MarvelService } from 'src/app/core/services/marvel.service';
@@ -13,37 +14,48 @@ export class PersonagemListComponent implements OnInit {
   paginaAtual: number = 1;
   itensPorPagina: number = 5;
 
-  personagens: Personagem[] = []
+  personagens: Personagem[] = [];
   constructor(
-    private marvelService: MarvelService
+    private marvelService: MarvelService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.getPersonagem();
+    this.getPersonagem2();
   }
 
-  getPersonagem(): void {
-    const response = lastValueFrom(this.marvelService.getPersonagem());
-    response.then((data) => {
-      console.log(data)
-      this.personagens = data.data.results
-      return data
+  // #region Aproachs diferentes para a mesma requisicao
+  //esse aqui usando o lastValueFrom que comentei na entrevista
+  getPersonagens(): void {
+    const response = lastValueFrom(this.marvelService.getPersonagens());
+    response.then((res) => {
+      this.personagens = res.data.results;
+
+      return res
     }).catch((err) => {
-      console.log('kk')
+      //aqui entra um toaster avisando o usuario sobre o erro
+      console.log('Não foi possivel buscar os personagens, tente novamente');
     });
   }
 
-  getCharacter2(): void {
-    this.marvelService.getPersonagem()
+  getPersonagem2(): void {
+    this.marvelService.getPersonagens()
       .pipe(
         catchError(error => {
-          console.error('Error:', error);
+          //aqui entra um toaster avisando o usuario sobre o erro
+          console.log('Não foi possivel buscar os personagens, tente novamente');
           return throwError(() => error);
         })
       )
       .subscribe(response => {
         this.personagens = response.data.results;
       });
+  }
+
+  // #endregion
+
+  navegarParaDetalhesPersonagem(personagemId: number): void {
+    this.router.navigate(['personagem/detalhes/' + personagemId]);
   }
 
   get paginas(): number[] {

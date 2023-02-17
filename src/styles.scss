@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-
+// FadeIn
+@import "./assets/sass/fadeIn.scss";
 .main-bg {
   background: #e5e5e5 0% 0% no-repeat padding-box;
   opacity: 1;
+  margin: 0 auto;
+  height: 100vh;
 }

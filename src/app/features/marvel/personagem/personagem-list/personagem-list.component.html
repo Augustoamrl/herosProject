@@ -1,4 +1,4 @@
-<div class="personagem-conteiner">
+<div class="personagem-conteiner effect-fadeIn">
     <h1>Busca de personagens</h1>
 
     <div class="search-container">
@@ -18,7 +18,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let personagem of personagens | filtroPorNome: nomeBusca | slice:(paginaAtual - 1) * itensPorPagina:(paginaAtual - 1) * itensPorPagina + itensPorPagina">
+                <tr *ngFor="let personagem of personagens | filtroPorNome: nomeBusca | slice:(paginaAtual - 1) * itensPorPagina:(paginaAtual - 1) * itensPorPagina + itensPorPagina"
+                    (click)="navegarParaDetalhesPersonagem(personagem.id)">
                     <td class="container-img-personagem">
                         <div class="column-img-personagem">
                             <img class="img-personagem"
@@ -47,13 +48,18 @@
         </table>
     </div>
 
-    <div class="pagination">
-        <span class="page-link" (click)="irParaPagina(1)"> << </span>
-        <span class="page-link" (click)="irParaPagina(paginaAtual - 1)"> < </span>
-        <ng-container *ngFor="let pagina of paginas">
-          <span class="page-link" [class.active]="pagina === paginaAtual" (click)="irParaPagina(pagina)">{{pagina}}</span>
-        </ng-container>
-        <span class="page-link" (click)="irParaPagina(paginaAtual + 1)"> > </span>
-        <span class="page-link" (click)="irParaPagina(paginas[paginas.length - 1])"> >> </span>
-      </div>
+</div>
+<div class="pagination">
+    <span class="page-link" (click)="irParaPagina(1)">
+        << </span>
+            <span class="page-link" (click)="irParaPagina(paginaAtual - 1)">
+                < </span>
+                    <ng-container *ngFor="let pagina of paginas">
+                        <span class="page-link" [class.active]="pagina === paginaAtual"
+                            (click)="irParaPagina(pagina)">{{pagina}}</span>
+                    </ng-container>
+                    <span class="page-link" *ngIf="paginaAtual != paginas[paginas.length - 1]"
+                        (click)="irParaPagina(paginaAtual + 1)"> > </span>
+                    <span class="page-link" *ngIf="paginaAtual != paginas[paginas.length - 1]"
+                        (click)="irParaPagina(paginas[paginas.length - 1])"> >> </span>
 </div>
